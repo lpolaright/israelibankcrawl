@@ -7,8 +7,8 @@ This is a repository to crawl the banks of Israel to get a clear status of your 
 Me and my girlfriend are living together, both of us together - have two bank accounts, and two credit cards.
 Keeping track of the expenses is hard, we tried doing it manually with a google doc, but loggining in 4 times a day is annoying.
 
-###The naive solution:###
-Create a joint bank account, and one credit card.
+###~~The naive solution:~~###
+~~Create a joint bank account, and one credit card.~~
 
 ###The developer's solution:###
 Create a web application + server + DB + crawling for the bank accounts and credit cards.
