@@ -1,0 +1,28 @@
+@import "material/bootstrap";
+@import "material/bootstrap/mixins";
+@import "material/bootstrap-material-design";
+@import "material/ripples";
+
+.bhp {
+	background-color: #c40019 !important;
+	color: white !important;
+	text-transform: none;
+}
+
+.dis {
+	background-color: #148d35 !important;
+	color: white !important;
+	text-transform: none;
+}
+
+.bhp-status-panel {
+	@include make-xs-column(2.5);
+	text-align: center;
+	font-size: 16px;
+}
+
+.dis-status-panel {
+	@include make-xs-column(2.5);
+	text-align: center;
+	font-size: 16px;
+}

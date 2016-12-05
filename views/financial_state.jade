@@ -1,0 +1,48 @@
+extends layout
+
+block head
+  link(href="/css/financial_state.css", rel="stylesheet")
+
+block content
+  div.container
+    h1 Financial State
+    div.jumbotron
+      div.panel.panel-default
+        div.panel-heading Fetch status:
+        div.panel-body.fetching-status
+          h3 Banks:
+          button.btn.btn-raised.btn-default.bhp.bhp-get-status BankHapoalim
+          button.btn.btn-raised.btn-default.dis.dis-get-status Discount
+          h3 Credits:
+      div.panel.panel-default
+        div.panel-heading Status:
+        div.panel-body
+          div.bhp-status-panel
+            div.panel.panel-default
+              div.panel-heading BankHapoalim
+              div.panel-body
+                div.panel.panel-success
+                  div.panel-heading Amount
+                  div.panel-body
+                    i(class="spinner fa fa-circle-o-notch fa-2x fa-spin", aria-hidden="true")
+                div.panel.panel-danger
+                  div.panel-heading Credit
+                  div.panel-body
+                    i(class="spinner fa fa-circle-o-notch fa-2x fa-spin", aria-hidden="true")
+          div.dis-status-panel
+            div.panel.panel-default
+              div.panel-heading Discount
+              div.panel-body
+                div.panel.panel-success
+                  div.panel-heading Amount
+                  div.panel-body
+                    i(class="spinner fa fa-circle-o-notch fa-2x fa-spin", aria-hidden="true")
+                div.panel.panel-danger
+                  div.panel-heading Credit
+                  div.panel-body
+                    i(class="spinner fa fa-circle-o-notch fa-2x fa-spin", aria-hidden="true")
+      pre #{financialState}
+
+block body_bottom
+  script(src="https://d3js.org/d3.v4.min.js")
+  script(src="/dist/financial_state/financialStateBootstrap.js")

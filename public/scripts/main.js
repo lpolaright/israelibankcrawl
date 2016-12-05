@@ -1,0 +1,3 @@
+(() => {
+	jQuery.material.init()
+})();
