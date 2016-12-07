@@ -10,7 +10,9 @@ module.exports = class ConfigurationController {
 		this.FinancialState.findOne({ 'owner': 'all' }, (err, financialState) => {
 			if (err) next(err);
 			if (financialState) {
-				response.render('config', { financialState: financialState });
+				let financialConfig = financialState.configuration || {};
+				let banksConfig = financialConfig.banks || {};
+				response.render('config', { banksConfig: banksConfig });
 			} else {
 				res.json(500);
 			}

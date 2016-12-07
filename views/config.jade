@@ -11,6 +11,35 @@ block content
         div.panel-heading Configurations
         div.panel-body
           h3 Banks:
+          - each bankConfig in banksConfig
+            pre= bankConfig
+          button(class="btn btn-success btn-fab btn-add-bank" data-toggle="modal" data-target="#add-bank-config-dialog")
+            i(class="fa fa-plus")
+
+      div(id="add-bank-config-dialog", class="modal fade")
+        div.modal-dialog
+          div.modal-content
+            div.modal-header
+              h4.modal-title Bank Configuration
+            div.modal-body
+              div.form-group.label-floating
+                label(class="control-label", for="bank_name") Bank Name
+                input(class="form-control", id="bank_name", type="text" required)
+              div.form-group.label-floating
+                label(class="control-label", for="nick_name") Nick Name (display name)
+                input(class="form-control", id="nick_name", type="text" required)
+              div.form-group.label-floating
+                label(class="control-label", for="user_name") User Name
+                input(class="form-control", id="user_name", type="text" required)
+              div.form-group.label-floating
+                label(class="control-label", for="password") Password
+                input(class="form-control", id="password", type="password" required)
+              div.form-group.label-floating
+                label(class="control-label", for="identification") Identification (optional)
+                input(class="form-control", id="identification", type="text")
+            div.modal-footer
+              button.btn.btn-primary Submit
+              button(class="btn btn-default", data-dismiss="modal") Close
         //-   button.btn.btn-raised.btn-default.bhp.bhp-get-status BankHapoalim
         //-   button.btn.btn-raised.btn-default.dis.dis-get-status Discount
         //-   h3 Credits:
