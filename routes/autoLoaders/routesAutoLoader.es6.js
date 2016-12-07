@@ -4,7 +4,8 @@ const ROUTES_AUTO_LOADING_EXCEPTIONS = {
 
 const GET_ROUTES = [
 	'/financial-state/today',
-	'/financial-state/today/:bank_name'
+	'/financial-state/today/:bank_name',
+	'/configuration'
 ];
 
 const CONTROLLER_PATH_SUFFIX = 'Controller.es6';
@@ -46,6 +47,7 @@ module.exports = class RoutesAutoLoader {
 		let controllerName = this.capitaliseFirstWord(routePathControllerName);
 		let controllerPath = CONTROLLERS_PATH + routePathControllerName + CONTROLLER_PATH_SUFFIX;
 		let ControllerClass = require(controllerPath);
+		console.log("Starting controller: " + routePathControllerName + CONTROLLER_PATH_SUFFIX);
 		let controllerInstance = new ControllerClass();
 		controllerInstance.render(request, response, next);
 	}

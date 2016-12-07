@@ -45,7 +45,6 @@ router.post('/income', function (req, res, next) {
 });
 
 var routesAutoLoader = new RoutesAutoLoader(router);
-console.log(routesAutoLoader.getRoutePathContoller('/financial-state/today/:bank_name'));
 routesAutoLoader.configureRoutes();
 router = routesAutoLoader.router;
 

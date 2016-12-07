@@ -18,6 +18,22 @@ var financialStateSchema = mongoose.Schema({
 		bank_name: String,
 		amount: Number,
 		income_day: Number
-	}]
+	}],
+	configuration: {
+		banks: [{
+			nick_name: String,
+			bank_name: String,
+			user_name: String,
+			password: String,
+			identification: String
+		}],
+		credit_cards: [{
+			nick_name: String,
+			credit_name: String,
+			user_name: String,
+			password: String,
+			identification: String
+		}]
+	}
 });
 module.exports = mongoose.model("FinancialState", financialStateSchema);
