@@ -8,9 +8,15 @@ const GET_ROUTES = [
 	'/configuration'
 ];
 
+const POST_ROUTES = [
+	'/configuration/bank',
+]
+
 const CONTROLLER_PATH_SUFFIX = 'Controller.es6';
+const UPDATER_PATH_SUFFIX = 'Updater.es6';
 
 const CONTROLLERS_PATH = '../../routes/controllers/';
+const UPDATERS_PATH = '../../routes/updaters/';
 
 module.exports = class RoutesAutoLoader {
 	constructor(router) {
@@ -20,12 +26,17 @@ module.exports = class RoutesAutoLoader {
 	configureRoutes() {
 		for (let getRoutePath of GET_ROUTES) {
 			this.router.get(getRoutePath, (request, response, next) => {
-				this.initiateRouteFunction(getRoutePath, request, response, next);
+				this.initiateRouteFunction("GET", getRoutePath, request, response, next);
 			});
+		}
+		for (let postRoutePath of POST_ROUTES) {
+			this.router.post(postRoutePath, (request, response, next) => {
+				this.initiateRouteFunction("POST", postRoutePath, request, response, next);
+			})
 		}
 	}
 
-	getRoutePathContoller(routePath) {
+	getRoutePathModule(routePath) {
 		let withoutTrailingSlash = routePath.substring(1);
 		let pathWithoutParam = withoutTrailingSlash.replace('/:', '-by-');			// When we have a param, it is by the param
 		let underscoresBecomeDashes = pathWithoutParam.replace('_', '-'); 			// Remove underscores for capitalising words
@@ -42,14 +53,26 @@ module.exports = class RoutesAutoLoader {
 		return controllerName;
 	}
 
-	initiateRouteFunction(routePath, request, response, next) {
-		let routePathControllerName = this.getRoutePathContoller(routePath);
-		let controllerName = this.capitaliseFirstWord(routePathControllerName);
-		let controllerPath = CONTROLLERS_PATH + routePathControllerName + CONTROLLER_PATH_SUFFIX;
-		let ControllerClass = require(controllerPath);
-		console.log("Starting controller: " + routePathControllerName + CONTROLLER_PATH_SUFFIX);
-		let controllerInstance = new ControllerClass();
-		controllerInstance.render(request, response, next);
+	initiateRouteFunction(method, routePath, request, response, next) {
+		let routePathModuleName = this.getRoutePathModule(routePath);
+		let moduleName = this.capitaliseFirstWord(routePathModuleName);
+		console.log(moduleName);
+		switch (method) {
+			case "GET":
+				let controllerPath = CONTROLLERS_PATH + routePathModuleName + CONTROLLER_PATH_SUFFIX;
+				let ControllerClass = require(controllerPath);
+				console.log("Starting controller: " + routePathModuleName + CONTROLLER_PATH_SUFFIX);
+				let controllerInstance = new ControllerClass();
+				controllerInstance.render(request, response, next);
+				break;
+			case "POST":
+				let updaterPath = UPDATERS_PATH + routePathModuleName + UPDATER_PATH_SUFFIX;
+				let UpaterClass = require(updaterPath);
+				console.log("Starting updater: " + routePathModuleName + UPDATER_PATH_SUFFIX);
+				let updaterInstance = new UpaterClass();
+				updaterInstance.update(request, response, next);
+				break;
+		}
 	}
 
 	capitaliseFirstWord(word) {
