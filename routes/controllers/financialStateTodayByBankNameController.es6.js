@@ -16,7 +16,7 @@ module.exports = class FinancialStateTodayByBankNameController {
 
     render(request, response, next) {
         let bankName = request.params.bank_name;
-
+        
         this.findDailyStatusToday()
             .then(([financialState, todayStatus]) => {
                 if (financialState && todayStatus) {

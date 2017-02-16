@@ -1,5 +1,6 @@
 let phantom = require('phantom');
 let Promise = require('promise');
+let banksConfig = require('../config/crawlersConfig.js')['banks'];
 
 let discountPromise = new Promise((resolve, reject) => {
     let monies = {};
@@ -28,21 +29,22 @@ let discountPromise = new Promise((resolve, reject) => {
         .then(status => {
             console.log("evaluating the login page");
             _page.render('discount_1_page.png');
-            return _page.evaluate(function () {
+            let bankConfig = banksConfig['BankDiscount'];
+            return _page.evaluate(function (bankConfig) {
                 jQuery(document).ready(function () {
-                    jQuery('#tzId').val('<your_ID_here>');
-                    jQuery('#tzPassword').val('<your_PASS_here>');
-                    jQuery('#aidnum').val('<your_AID_NUMBER_here>');
+                    jQuery('#tzId').val(bankConfig['id']);
+                    jQuery('#tzPassword').val(bankConfig['password']);
+                    jQuery('#aidnum').val(bankConfig['aid']);
 
                     jQuery('#submitButton').click();
                 });
-            })
+            }, bankConfig)
         })
         .then(() => {
             return new Promise(function (resolveMonies, rejectMonies) {
                 setTimeout(function () {
                     console.log("evaluating the page");
-
+                    _page.render('discount_2_page.png');
                     _page.evaluate(function () {
 
                         var mainSum = jQuery('#phpIFrame').contents().find('#accountbalance_limit').text().replace(/ |₪|\n/g,'');

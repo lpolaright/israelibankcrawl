@@ -1,6 +1,8 @@
 let phantom = require('phantom');
 let Promise = require('promise');
 
+let banksConfig = require('../config/crawlersConfig.js')['banks'];
+
 let bhpPromise = new Promise((resolve, reject) => {
     let monies = {};
     let sitepage = null;
@@ -26,20 +28,20 @@ let bhpPromise = new Promise((resolve, reject) => {
             return _page.open(iframeLoginUrl);
         })
         .then(status => {
-            console.log("evaluating the login page");
-            return _page.evaluate(function () {
+            let bankConfig = banksConfig['BankHapoalim'];
+            return _page.evaluate(function (bankConfig) {
                 jQuery(document).ready(function () {
                     arcot.initArcotIDClient('small');
                     putFocusToFirstField();
                     cancelAutoComplete();
 
-                    jQuery('#userID').val('<your_ID_here>');
-                    jQuery('#userPassword').val('<your_password_here>');
+                    jQuery('#userID').val(bankConfig['user']);
+                    jQuery('#userPassword').val(bankConfig['password']);
 
                     arcot.processSubmit();
                     if (!arcot.cancelSubmit) { };
                 });
-            })
+            }, bankConfig)
         })
         .then(() => {
             return new Promise(function (resolveMonies, rejectMonies) {
