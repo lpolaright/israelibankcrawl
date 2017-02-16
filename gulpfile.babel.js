@@ -10,6 +10,8 @@ import source from 'vinyl-source-stream';
 // Nodemon
 import nodemon from 'gulp-nodemon';
 
+gulp.task('start', ['nodemon', 'rollup']);
+
 gulp.task('nodemon', () => {
     nodemon({
         script: './bin/www',
