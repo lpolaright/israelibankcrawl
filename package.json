@@ -16,15 +16,17 @@
     "morgan": "~1.6.1",
     "phantom": "^3.0.3",
     "promise": "^7.1.1",
-    "serve-favicon": "~2.3.0"
+    "serve-favicon": "~2.3.0",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-tap-event-plugin": "^2.0.1"
   },
   "devDependencies": {
-    "babel-preset-latest": "^6.16.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
     "gulp-nodemon": "^2.2.1",
+    "gulp-react": "^3.1.0",
     "gulp-rollup": "^2.5.1",
-    "gulp-sass": "^2.3.2",
-    "rollup-plugin-includepaths": "^0.1.6"
+    "gulp-sass": "^2.3.2"
   }
 }
