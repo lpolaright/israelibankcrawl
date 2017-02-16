@@ -116,6 +116,8 @@ module.exports = class FinancialStateTodayByBankNameController {
                 financialState.dailyStatus.push(todayStatus);
             }
 
+            // response.status(200).json(bankStatus);
+
             FinancialState.findByIdAndUpdate(financialState.id, { $set: { "dailyStatus": financialState.dailyStatus } })
                 .then(() => {
                     response.status(200).json(bankStatus);
