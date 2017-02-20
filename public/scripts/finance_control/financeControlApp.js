@@ -1,13 +1,17 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux'
 
 import './financeControl.scss';  
     
 import Card from '../components/cards/card/card';
 import TextField from '../components/inputs/TextField/textField';
-         
+
+import store from './store.js'; 
+
 const App = () => (
   <Card headerText="Input your current financial situation: ">
+    <div>{console.log(store.getState('people'))}</div>
     <TextField type="text" placeholderText="BankHapoalim (p1) Total"/>
     <TextField type="text" placeholderText="BankHapoalim (p1) Credit"/>
     <TextField type="text" placeholderText="Discount Bank (p2) Total"/>
@@ -23,7 +27,9 @@ const App = () => (
 ); 
 //  asdasd                
 
-ReactDOM.render(
-  <App />,
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById('app')
 );
