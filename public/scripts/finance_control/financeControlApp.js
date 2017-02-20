@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
- 
+
 import './financeControl.scss';  
     
 import Card from '../components/cards/card/card';

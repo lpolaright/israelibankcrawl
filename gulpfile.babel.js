@@ -44,6 +44,8 @@ gulp.task('rollup', () => {
         external: [
             'react',
             'react-dom',
+            'react-redux',
+            'redux',
         ],
         format: 'iife',
         plugins: [
@@ -71,7 +73,9 @@ gulp.task('rollup', () => {
         ],
         globals: {
             'react': 'React',
-            'react-dom': 'ReactDOM'
+            'react-dom': 'ReactDOM',
+            'react-redux': 'ReactRedux',
+            'redux': 'Redux',
         }
     }).pipe(source(fileName))
         .pipe(gulp.dest(DIST_PATH + filePath))
