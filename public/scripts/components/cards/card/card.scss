@@ -1,0 +1,16 @@
+$shadow-color: #adadad;
+$primary-color: #3F51B5;
+
+.card {
+	background-color: #fff;
+	box-shadow: 0 0 5px 0 $shadow-color;
+	.cardHeader {
+		color: #fff;
+		background-color: $primary-color;
+		box-shadow: 0 3px 5px 0px $shadow-color;
+		padding: 30px;
+	}
+	.cardBody {
+		padding: 30px;
+	}
+}
