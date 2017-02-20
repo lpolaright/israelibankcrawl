@@ -5,7 +5,8 @@ const ROUTES_AUTO_LOADING_EXCEPTIONS = {
 const GET_ROUTES = [
 	'/financial-state/today',
 	'/financial-state/today/:bank_name',
-	'/configuration'
+	'/configuration',
+	'/finance-control'
 ];
 
 const POST_ROUTES = [

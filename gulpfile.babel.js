@@ -13,6 +13,9 @@ import replace from 'rollup-plugin-replace';
 // Nodemon
 import nodemon from 'gulp-nodemon';
 
+const SCRIPT_PATH = './public/scripts';
+const DIST_PATH = './public/dist';
+
 gulp.task('start', ['nodemon', 'watch-rollup']);
 
 gulp.task('nodemon', () => {
@@ -28,8 +31,12 @@ gulp.task('watch-rollup', () => {
 
 gulp.task('rollup', () => {
     util.log('running rollup...');
+    
+    let fileName = 'financeControlApp.js';
+    let filePath = '/finance_control/';
+    
     return rollup({
-        entry: './public/scripts/financial_state/financialStateBootstrap.js',
+        entry: SCRIPT_PATH + filePath + fileName,
         external: [
             'react',
             'react-dom',
@@ -60,7 +67,7 @@ gulp.task('rollup', () => {
             'react-dom': 'ReactDOM'
         }
     })
-        .pipe(source('financialStateBootstrap.js'))
-        .pipe(gulp.dest('./public/dist/financial_state/'))
+        .pipe(source(fileName))
+        .pipe(gulp.dest(DIST_PATH + filePath))
         .on('error', util.log);
 })
