@@ -4,6 +4,8 @@
 	font-size: 18px;
     border: none;
     border-bottom: 1px solid $shadow-color;
+	margin: 5px 0;
+	width: 100%;
 	transition: all 200ms;
 
 	&:focus {
