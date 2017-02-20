@@ -3,14 +3,13 @@
  
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import {MuiThemeProvider} from 'material-ui /styles     /MuiThemeProvider'; 
 
 const App = () => (
   <div>
     <div>Hello world</div>
   </div>
 ); 
-//  asdasd          
+//  asdasd            
 
 ReactDOM.render(
   <App />,

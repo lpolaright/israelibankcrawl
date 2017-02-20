@@ -30,10 +30,10 @@ gulp.task('rollup', () => {
     util.log('running rollup...');
     return rollup({
         entry: './public/scripts/financial_state/financialStateBootstrap.js',
-        // external: [
-        //     'react',
-        //     'react-dom',
-        // ],
+        external: [
+            'react',
+            'react-dom',
+        ],
         format: 'iife',
         plugins: [
             babel({
@@ -45,20 +45,20 @@ gulp.task('rollup', () => {
                 main: true,
                 //     browser: true
             }),
-            replace({
-                'process.env.NODE_ENV': JSON.stringify('production')
-            }),
-            commonjs({
-                namedExports: [
-                    'node_modules/raect/react.js',
-                    'node_modules/react-dom/index.js'
-                ]
-            }),
+            // replace({
+            //     'process.env.NODE_ENV': JSON.stringify('production')
+            // }),
+            // commonjs({
+            //     namedExports: [
+            //         'node_modules/raect/react.js',
+            //         'node_modules/react-dom/index.js'
+            //     ]
+            // }),
         ],
-        // globals: {
-        //     'react': 'React',
-        //     'react-dom': 'ReactDOM'
-        // }
+        globals: {
+            'react': 'React',
+            'react-dom': 'ReactDOM'
+        }
     })
         .pipe(source('financialStateBootstrap.js'))
         .pipe(gulp.dest('./public/dist/financial_state/'))
