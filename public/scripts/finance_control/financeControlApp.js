@@ -9,8 +9,11 @@ import FinanceCard from '../components/cards/FinanceCard/financeCard';
 import store from './store.js';
 
 const App = () => (
-  <FinanceCard personName="Daniel" />
-);
+  <div className="financeControl">
+    <FinanceCard personName="Daniel" />
+    <FinanceCard personName="Alina" />
+  </div>
+); 
 
 render(
   <Provider store={store}>
