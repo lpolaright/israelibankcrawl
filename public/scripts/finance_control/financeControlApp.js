@@ -6,6 +6,7 @@ import './financeControl.scss';
     
 import Card from '../components/cards/card/card';
 import TextField from '../components/inputs/TextField/textField';
+import FinanceButton from '../components/buttons/FinanceButton/financeButton';
 
 import store from './store.js'; 
 
@@ -23,6 +24,7 @@ const App = () => (
     <TextField type="text" placeholderText="Corporate (p1) Credit"/>
     <TextField type="text" placeholderText="Other (p1) Credit"/>
     <TextField type="text" placeholderText="Other (p2) Credit"/>
+    <FinanceButton onClick={() => console.log('awesome')} buttonText="Submit" /> 
   </Card>
 ); 
 //  asdasd                
